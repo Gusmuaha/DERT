@@ -14,9 +14,9 @@ Demonstration code : [<Ass code 1-4> <abc>] Important, No code no exercise point
 #include <string.h>
 #include <stdlib.h>
 
-const int MAX = 20;
-char arr1[MAX];
-char arr2[MAX];
+void copyString();
+char arr1[20];
+char arr2[20];
 
 
 int main() {
