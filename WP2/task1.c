@@ -12,13 +12,12 @@ Demonstration code : [<Ass code 1-4> <abc>] Important, No code no exercise point
 ====================================== */
 #include <stdio.h>
 #include <string.h>
-#include <cstdlib>
+#include <stdlib.h>
 
 const int MAX = 20;
 char arr1[MAX];
 char arr2[MAX];
 
-void copyString();
 
 int main() {
 
@@ -83,28 +82,3 @@ void copyString() {
 
 }
 
-
-void copyString() {
-
-    FILE *fptr;
-    if ((fptr = fopen("hi there.txt", "r")) == NULL) {
-        printf("Error! opening file");
-        // Program exits if file pointer returns NULL.
-        exit(1);
-    }
-
-    fscanf(fptr, "%[^\n]", arr1);
-    printf("Data from the file:\n%s", arr1);
-    fclose(fptr);
-
-    printf("Type the string you would like copied\n");
-    fgets(arr1, sizeof(arr1), stdin);
-    printf("The string: %s\n", arr1);
-
-
-    for(int i = 0; arr1[i] != '\0'; i++){
-        arr2[i] = arr1[i];
-    }
-    printf("Copied string: %s\n", arr2);
-
-}
