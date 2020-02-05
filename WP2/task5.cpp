@@ -29,15 +29,15 @@ int main(void){
     tp = table;
     fp = frequency;
     create_random(tp);
-    count_frequency(tp, fp);
-  //  draw_histogram(fp);
+  count_frequency(tp, fp);
+    draw_histogram(frequency);
+
     for(int i = 0; i < MAX; i++){
-       // if(frequency[i] != -1) {
-           // printf("%d  ---- %d\n", table[i], frequency[i]);
-        
-      //  }
-      printf("%d\n", table[i]);
+        if(frequency[i] != -1) {
+            printf("%d  ---- %d\n", table[i], frequency[i]);
+        }
     }
+
 }
 
 void create_random(int *tab){
@@ -69,7 +69,13 @@ void count_frequency(int *tab, int *freq){
 }
 
 void draw_histogram(int *freq){
-    for(int i = 0; i < MAX, i++;) {
-            printf("%d\n", freq[i]);
+    for(int i = 0; i < MAX; i++){
+        if(frequency[i] != -1) {
+            printf("%d  ", table[i]);
+            for ( int j = 0; j < freq[i]; ++j) {
+                printf("x");
+            }
+            printf("\n");
+        }
     }
 }
