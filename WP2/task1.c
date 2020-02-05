@@ -46,8 +46,6 @@ int main() {
 
     printf("Copied string: %s\n", arr2);
 
-    copyString();
-
 }
 
 void copyString() {
