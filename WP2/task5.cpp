@@ -37,7 +37,6 @@ int main(void){
             printf("%d  ---- %d\n", table[i], frequency[i]);
         }
     }
-
 }
 
 void create_random(int *tab){
