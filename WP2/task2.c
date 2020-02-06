@@ -15,11 +15,13 @@ Demonstration code : [37536] Important, No code no exercise points!
 
 #include <stdio.h>
 #include <stdlib.h>
+#include<time.h>
 
 const int MAX = 10;
 int main() {
   int arr[MAX];
   for (int i = 0; i < MAX; i++) {
+    //srand(time(NULL));
     arr[i] = rand()%99;
     printf("%d\n", arr[i]);
   }

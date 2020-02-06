@@ -16,70 +16,73 @@ Demonstration code : [38194]
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+#include <stdbool.h>
+#define MAXCHAR 1000
 void copyString();
 char arr1[20];
 char arr2[20];
 
 
-int main() {
 
-    FILE *fptr;
-    if ((fptr = fopen("/home/hannah/hithere.txt", "r")) == NULL) {
-        printf("Error! opening file");
-        exit(1);
-    }
-
-    fscanf(fptr, "%[^\n]", arr1);
-
-    printf("Data from the file: %s\n", arr1);
-    fclose(fptr);
-
-    strcpy(arr2, arr1);
-
-    printf("Copied string from the file: %s\n", arr2);
+int main(){
 
 
-    printf("Type the string you would like copied\n");
-    fgets(arr1, sizeof(arr1), stdin);
+int nr;
+bool format = true;
+char userInput[22]; // Used for user string, takes 20 chars and with room for /0 at end.
+char copiedString[22];
 
-    printf("The string: %s\n", arr1);
 
-    strcpy(arr2, arr1);
+while (format) {
+format = false;
+printf("Type 1 for keybord string input or 2 for input via file \n");
 
-    printf("Copied string: %s\n", arr2);
+scanf("%d",&nr); // Reads input
 
+switch (nr) {
+
+case 1 : {
+printf("\n Please enter a string with maximum 20 characters \n");
+
+getchar(); // "removes" the new line \n char from stdin so that fgets dont already have an input and skips real user input
+fgets(userInput, 21, stdin);
+
+printf("userInput to be copied is : %s \n", userInput);
+
+strcpy(copiedString, userInput);
+printf("copiedString is : %s \n", copiedString);
+
+break;
 }
 
-void copyString() {
+case 2 : {
 
-    FILE *fptr;
-    if ((fptr = fopen("/home/hannah/hithere.txt", "r")) == NULL) {
-        printf("Error! opening file");
-        // Program exits if file pointer returns NULL.
-        exit(1);
-    }
+FILE *fp; // declaring pointer of FILE type
+char str[MAXCHAR];
+char *filename = "c:\\temp\\myfile.txt";
 
-    fscanf(fptr, "%[^\n]", arr1);
+// pointing fp1 to a file with the name of filename string.
+fp = fopen(filename, "r"); // r searches for the file and returns null if error encountered
 
-    printf("Data from the file: %s\n", arr1);
-    fclose(fptr);
-
-    for(int i = 0; arr1[i] != '\0'; i++){
-        arr2[i] = arr1[i];
-    }
-    printf("Copied string: %s\n", arr2);
-
-
-    printf("Type the string you would like copied\n");
-    fgets(arr1, sizeof(arr1), stdin);
-    printf("The string: %s\n", arr1);
-
-
-    for(int i = 0; arr1[i] != '\0'; i++){
-        arr2[i] = arr1[i];
-    }
-    printf("Copied string: %s\n", arr2);
-
+if (fp == NULL) {
+printf("Could not open file %s", filename);
+return 1;
 }
 
+while (fgets(str, MAXCHAR, fp) != NULL) // reads string from file into
+printf("%s", str);
+fclose(fp);
+break;
+}
+
+
+default :
+printf("\nInput was not a number of 1 or 2. ");
+format = true;
+}
+}
+
+
+return 0;
+
+}

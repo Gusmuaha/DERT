@@ -41,6 +41,7 @@ int main(void){
 
 void create_random(int *tab){
     for (int i = 0; i < MAX; i++) {
+        //srand(time(NULL));
         *tab = rand()%MAXNUMBER;
         *tab++;
     }

@@ -62,7 +62,7 @@ int controlDigit(const char * persnr){
     return num;
 }
 
-int addControlNo(){
+int addControlNo(char *number){
     int temp = pp;
     for (int i = 9; i >= 0; i--){
         *pp = temp % 10;
