@@ -1,8 +1,8 @@
 /*
  *  File    : nim.c
  *  Program : Nim game
- *  Author  : Hassan Mualla && Hannah Maltkvist
- *  This is task 8 of WP2 of Development of Embedded Real-Time Systems
+ *  Author  : Hassan Mualla && Hannah Maltkvist && Carl Nihlmar
+ *  This is task 8 of WP2 of Development of Embedded Real-Time Systems 34195
  */
 #include<stdio.h>
 #include<stdlib.h>

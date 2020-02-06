@@ -6,75 +6,67 @@ Group nr xxx
 Members that contribute to the solutions
 Hassan Mualla
 Hannah Maltkvist
+Carl Nihlmar
 
 Member not present at demonstration time:
-Demonstration code : [<Ass code 1-4> <abc>] Important, No code no exercise points!
+Demonstration code : [31232] Important, No code no exercise points!
 ====================================== */
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
-#include <time.h>
+char arr1[10];
+int arr2[10];
+int readPersnr(char *person);
+int *pp = arr1;
+int *p2 = arr2;
+int controlDigit( const char * persnr);
 
-#define MAX 100
-#define MAXNUMBER 20
+int main(){
+    printf("Gimme that personnummer\n");
+    fgets(arr1, sizeof(arr1), stdin);
+    readPersnr(arr1);
+    controlDigit(arr1);
 
-void create_random( int *tab);
-void count_frequency(int *tab, int *freq);
-void draw_histogram(int *freq);
-int table[MAX], n;
-int frequency[MAXNUMBER];
-int *tp, *fp;
-
-
-int main(void){
-    tp = table;
-    fp = frequency;
-    create_random(tp);
-  count_frequency(tp, fp);
-    draw_histogram(frequency);
-
-    for(int i = 0; i < MAX; i++){
-        if(frequency[i] != -1) {
-            printf("%d  ---- %d\n", table[i], frequency[i]);
-        }
-    }
+    return 0;
 }
 
-void create_random(int *tab){
-    for (int i = 0; i < MAX; i++) {
-        *tab = rand()%MAXNUMBER;
-        *tab++;
-    }
+int readPersnr(char *person){
+
+    sscanf(arr1, "%d", &pp);
+    printf("Personnumer is: %d\n", pp);
+
 }
 
+int controlDigit(const char * persnr){
+    sscanf(arr1, "%d", &pp);
+    int temp = pp;
+    int sum = 0;
 
-
-void count_frequency(int *tab, int *freq){
-    //iterate through the array
-    //compare the values in the array
-    //count how many times the number appears
-    //get rid of anything that doesn't show up in the range
-    for(int i = 0; i < MAX; i++){
-        int count = 1;
-        for(int j = i+1; j < MAX; j++){
-            if(tab[i] == tab[j]){
-                count++;
-                freq[j] = -1;
+    for(int i=1; i < 10; i++){
+        int digit = temp % 10LL;
+        if(i % 2  != 0){
+            digit *=2;
+            if(digit > 9){
+                digit -= 9;
             }
         }
-        if(freq[i] != -1){
-            freq[i] = count;
-        }
+        sum += digit;
+        temp /= 10LL;
     }
+    int checksum = (sum % 10);
+    int num = (10-checksum);
+
+    return 0;
 }
 
-void draw_histogram(int *freq){
-    for(int i = 0; i < MAX; i++){
-        if(frequency[i] != -1) {
-            printf("%d  ", table[i]);
-            for ( int j = 0; j < freq[i]; ++j) {
-                printf("x");
-            }
-            printf("\n");
-        }
+int addControlNo(){
+    int temp = pp;
+    for (int i = 9; i >= 0; i--){
+        *pp = temp % 10;
+        temp = temp / 10;
+        *pp++;
     }
+    arr2[10] = num;
+    return 0;
 }
+

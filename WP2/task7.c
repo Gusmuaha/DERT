@@ -17,6 +17,8 @@ char arr1[10];
 int arr2[10];
 int readPersnr(char *person);
 int *pp = arr1;
+int *p2 = arr2;
+int num = 0;
 int controlDigit( const char * persnr);
 
 int main(){
@@ -39,6 +41,7 @@ int controlDigit(const char * persnr){
     sscanf(arr1, "%d", &pp);
     int temp = pp;
     int sum = 0;
+
     for(int i=1; i < 10; i++){
         int digit = temp % 10LL;
         if(i % 2  != 0){
@@ -51,18 +54,22 @@ int controlDigit(const char * persnr){
         temp /= 10LL;
     }
     int checksum = (sum % 10);
-    printf("%d", checksum);
+    num = (10-checksum);
+    printf("%d\n", num);
 
+
+
+    return num;
+}
+
+int addControlNo(){
+    int temp = pp;
     for (int i = 9; i >= 0; i--){
-        arr2[i] = temp % 10;
+        *pp = temp % 10;
         temp = temp / 10;
+        *pp++;
     }
-/*
-    for (int i = 1; i < 10; i++){
-        printf("%d\n", arr2[i]);
-    }
-    */
-    printf("%d", sum);
-    return sum;
+    arr2[10] = num;
+    return 0;
 }
 

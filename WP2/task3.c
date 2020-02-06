@@ -6,9 +6,11 @@ Group nr xxx
 Members that contribute to the solutions
 Hassan Mualla
 Hannah Maltkvist
+Carl Nihlmar
+
 
 Member not present at demonstration time:
-Demonstration code : [<Ass code 1-4> <abc>] Important, No code no exercise points!
+Demonstration code : [35453] Important, No code no exercise points!
 ====================================== */
 #include <stdio.h>
 #include <string.h>
