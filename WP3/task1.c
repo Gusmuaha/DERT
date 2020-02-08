@@ -40,17 +40,18 @@ int main(){
         printf("\n");
         printf("Where does the Boi begin? Give an x coordinate between 1-99\n");
         scanf("%d", &get);
-        if(get < 0 || get > 100){
+        if(get > 1 || get < 100){
             printf("that is not a valid selection\n");
             //fix this so you have to try again
+            
         }else{
             findTheBoi->xpos = get;
         }
         printf("Give an y coordinate between 1-99\n");
         scanf("%d", &get);
-        if(get <0 || get > 100){
+        if(get < 1 || get > 100){
             printf("that is not a valid selection\n");
-            return 1;
+            
             //fix this so you have to try again
         }else{
             findTheBoi->ypos = get;
@@ -62,8 +63,6 @@ int main(){
         printf("Type any number of 'm's to make him step forward\n");
         getchar();
         fgets(commands, MAX, stdin);
-        //do some error handling for x & y coordinates
-        //also fix so that you print the actual direction letter and not a number
         for(int i = 0; i<MAX; i++){
                 if(commands[i] == 't'){
                     turn(findTheBoi);
@@ -75,7 +74,7 @@ int main(){
             }
 
 
-        printf("x : %d y : %d, direction : %d\n", boi.xpos, boi.ypos, boi.dir);
+        printf("x : %d y : %d\n", boi.xpos, boi.ypos);
         printf("\n");
         printf("\n");
 
@@ -91,9 +90,9 @@ void move(ROBOT *m){
         m->xpos++;
     }if(m->dir == 1){
         m->ypos++;
-    }if(m->dir == 2){
+    }if(m->dir == 2  && m->xpos < 0 ){
         m->xpos--;
-    }if(m->dir == 3){
+    }if(m->dir == 3  && m->ypos < 0){
         m->ypos--;
     }
 }
