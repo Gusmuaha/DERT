@@ -17,7 +17,6 @@ Demonstration code : []
 #include <string.h>
 #include <stdlib.h>
 #define MAX 100
-char commands[MAX];
 int quit();
 enum DIRECTION {N,O,S,W}; //0-3
 typedef struct{
@@ -31,19 +30,20 @@ char m, t;
 
 int main(){
     int get;
-    ROBOT boi = {0,0,N};
-    ROBOT *findTheBoi = &boi;
     //how to use struct pointer for specific attribute using arrow
-    printf("Position x: %d\n", findTheBoi -> dir);
+  //  printf("Position x: %d\n", findTheBoi -> dir);
 
     do{
+        ROBOT boi = {0,0,N};
+        ROBOT *findTheBoi = &boi;
+        char commands[MAX];
         printf("\n");
         printf("Where does the Boi begin? Give an x coordinate between 1-99\n");
         scanf("%d", &get);
-        if(get > 1 || get < 100){
+        if(get < 1 || get > 100){
             printf("that is not a valid selection\n");
             //fix this so you have to try again
-            
+
         }else{
             findTheBoi->xpos = get;
         }
@@ -51,27 +51,26 @@ int main(){
         scanf("%d", &get);
         if(get < 1 || get > 100){
             printf("that is not a valid selection\n");
-            
+
             //fix this so you have to try again
         }else{
             findTheBoi->ypos = get;
         }
-        //m stands for move 1 direction
-        //t stands for rotate 90 degrees
+
         printf("Where does the Boi go?\n");
-        printf("Type any number of 't's to turn him\n");
+        printf("Type any number of 't's to turn him 90 degrees \n");
         printf("Type any number of 'm's to make him step forward\n");
         getchar();
         fgets(commands, MAX, stdin);
         for(int i = 0; i<MAX; i++){
-                if(commands[i] == 't'){
-                    turn(findTheBoi);
-                }if(commands[i] == 'm'){
-                    move(findTheBoi);
-                }if(commands[i] == 0){
-                    break;
-                }
+            if(commands[i] == 't'){
+                turn(findTheBoi);
+            }if(commands[i] == 'm'){
+                move(findTheBoi);
+            }if(commands[i] == 0){
+                break;
             }
+        }
 
 
         printf("x : %d y : %d\n", boi.xpos, boi.ypos);
@@ -90,9 +89,9 @@ void move(ROBOT *m){
         m->xpos++;
     }if(m->dir == 1){
         m->ypos++;
-    }if(m->dir == 2  && m->xpos < 0 ){
+    }if(m->dir == 2  && m->xpos > 0 ){
         m->xpos--;
-    }if(m->dir == 3  && m->ypos < 0){
+    }if(m->dir == 3  && m->ypos > 0){
         m->ypos--;
     }
 }
@@ -113,5 +112,4 @@ int quit(){
         return 0;
     }
     return 1;
-
 }
