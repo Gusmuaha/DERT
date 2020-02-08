@@ -1,7 +1,7 @@
 /* ====================================
-File name: task2.c (or cpp)
-Date: 2020-mm-dd
-Group nr xxx
+File name: task6.c (or cpp)
+Date: 2020-02-07
+Group nr 17
 
 Members that contribute to the solutions
 Hassan Mualla

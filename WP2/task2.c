@@ -1,7 +1,7 @@
 /* ====================================
 File name: task2.c (or cpp)
-Date: 2020-mm-dd
-Group nr xxx
+Date: 2020-02-07
+Group nr 17
 
 Members that contribute to the solutions
 Hassan Mualla
@@ -20,8 +20,9 @@ Demonstration code : [37536] Important, No code no exercise points!
 const int MAX = 10;
 int main() {
   int arr[MAX];
+    srand(time(NULL));
+
   for (int i = 0; i < MAX; i++) {
-    //srand(time(NULL));
     arr[i] = rand()%99;
     printf("%d\n", arr[i]);
   }

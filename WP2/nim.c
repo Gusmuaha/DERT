@@ -2,7 +2,8 @@
  *  File    : nim.c
  *  Program : Nim game
  *  Author  : Hassan Mualla && Hannah Maltkvist && Carl Nihlmar
- *  This is task 8 of WP2 of Development of Embedded Real-Time Systems 34195
+ * Demonstration code : [34195]
+ *  This is task 8 of WP2 of Development of Embedded Real-Time Systems 
  */
 #include<stdio.h>
 #include<stdlib.h>

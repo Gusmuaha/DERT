@@ -1,11 +1,13 @@
 /* ====================================
-File name: task1.c (or cpp)
-Date: 2020-mm-dd
-Group nr xxx
+File name: task5.cpp (or cpp)
+Date: 2020-02-07
+Group nr 17
 
 Members that contribute to the solutions
 Hassan Mualla
 Hannah Maltkvist
+Carl Nihlmar
+
 
 Member not present at demonstration time:
 Demonstration code : [31232] Important, No code no exercise points!
@@ -26,6 +28,7 @@ int *tp, *fp;
 
 
 int main(void){
+    srand(time(NULL));
     tp = table;
     fp = frequency;
     create_random(tp);
@@ -41,7 +44,6 @@ int main(void){
 
 void create_random(int *tab){
     for (int i = 0; i < MAX; i++) {
-        //srand(time(NULL));
         *tab = rand()%MAXNUMBER;
         *tab++;
     }
