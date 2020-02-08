@@ -17,7 +17,6 @@ Demonstration code : []
 #include <string.h>
 #include <stdlib.h>
 #define MAX 100
-int quit();
 enum DIRECTION {N,O,S,W}; //0-3
 typedef struct{
     int xpos;
@@ -26,12 +25,13 @@ typedef struct{
 } ROBOT;
 void move(ROBOT *m);
 void turn(ROBOT *t);
+void setX(ROBOT *r, int x);
+void setY(ROBOT *r, int y);
+int quit();
 char m, t;
 
 int main(){
     int get;
-    //how to use struct pointer for specific attribute using arrow
-  //  printf("Position x: %d\n", findTheBoi -> dir);
 
     do{
         ROBOT boi = {0,0,N};
@@ -40,22 +40,11 @@ int main(){
         printf("\n");
         printf("Where does the Boi begin? Give an x coordinate between 1-99\n");
         scanf("%d", &get);
-        if(get < 1 || get > 100){
-            printf("that is not a valid selection\n");
-            //fix this so you have to try again
+        setX(findTheBoi, get);
 
-        }else{
-            findTheBoi->xpos = get;
-        }
-        printf("Give an y coordinate between 1-99\n");
+        printf("Give a y coordinate between 1-99\n");
         scanf("%d", &get);
-        if(get < 1 || get > 100){
-            printf("that is not a valid selection\n");
-
-            //fix this so you have to try again
-        }else{
-            findTheBoi->ypos = get;
-        }
+        setY(findTheBoi, get);
 
         printf("Where does the Boi go?\n");
         printf("Type any number of 't's to turn him 90 degrees \n");
@@ -82,6 +71,24 @@ int main(){
 
     }while(quit());
     return 0;
+}
+
+void setX(ROBOT *r, int x){
+if(x > 0 && x < 100){
+            r->xpos = x;
+        }else{
+            printf("that is not a valid selection\n");
+            main();
+        }
+}
+
+void setY(ROBOT *r, int y){
+if(y > 0 && y < 100){
+            r->ypos = y;
+        }else{
+            printf("that is not a valid selection\n");
+            main();
+        }
 }
 
 void move(ROBOT *m){
