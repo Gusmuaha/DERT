@@ -28,6 +28,7 @@ enum DIRECTION dir;
 char m, t;
 
 int main(){
+    int get;
     ROBOT boi = {0,0,N};
     ROBOT *findTheBoi = &boi;
     //how to use struct pointer for specific attribute using arrow
@@ -36,12 +37,28 @@ int main(){
     do{
         printf("\n");
         printf("Where does the Boi begin? Give an x coordinate between 1-99\n");
-        //get the x coordinate and assign to struct boi
+        scanf("%d", &get);
+        if(get < 0 || get > 100){
+            printf("that is not a valid selection\n");
+            //fix this so you have to try again
+        }else{
+            findTheBoi->xpos = get;
+        }
         printf("Give an y coordinate between 1-99\n");
-        //get y coordinate and assign to struct boi
+        scanf("%d", &get);
+        if(get <0 || get > 100){
+            printf("that is not a valid selection\n");
+            return 1;
+        //fix this so you have to try again
+        }else{
+          findTheBoi->ypos = get;
+        }
         //m stands for move 1 direction
         //t stands for rotate 90 degrees
         printf("Where does the Boi go?\n");
+        printf("Type any number of 't's to turn him\n");
+        printf("Type any number of 'm's to make him step forward\n");
+
 
         //once boi has been completed take these inputs and apply them to boi until user quits
         move();
@@ -59,7 +76,7 @@ int main(){
 }
 
 void move(){
-//parse number of M's into how many steps we need to take and apply to boi
+//parse number of m's into how many steps we need to take and apply to boi
 }
 
 void turn(){
@@ -68,8 +85,8 @@ void turn(){
 
 int quit(){
     char quit = 'f';
-    printf("Abandon the boi by entering 'q'.\n");
-    printf("Otherwise, type anything else to give a new starting x coordinate\n");
+    printf("Abandon the boi by entering 'q, otherwise type anything else to start over.\n");
+    scanf("%c",&quit);
 
     scanf("%c",&quit);
     if(quit == 'q'){
