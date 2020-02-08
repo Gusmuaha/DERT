@@ -16,15 +16,17 @@ Demonstration code : []
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-void move();
-void turn();
+#define MAX 100
+char commands[MAX];
 int quit();
 enum DIRECTION {N,O,S,W}; //0-3
 typedef struct{
-int xpos;
-int ypos;
-enum DIRECTION dir;
+    int xpos;
+    int ypos;
+    enum DIRECTION dir;
 } ROBOT;
+void move(ROBOT *m);
+void turn(ROBOT *t);
 char m, t;
 
 int main(){
@@ -32,7 +34,7 @@ int main(){
     ROBOT boi = {0,0,N};
     ROBOT *findTheBoi = &boi;
     //how to use struct pointer for specific attribute using arrow
-    printf("Position x: %d\n", findTheBoi -> xpos);
+    printf("Position x: %d\n", findTheBoi -> dir);
 
     do{
         printf("\n");
@@ -49,20 +51,29 @@ int main(){
         if(get <0 || get > 100){
             printf("that is not a valid selection\n");
             return 1;
-        //fix this so you have to try again
+            //fix this so you have to try again
         }else{
-          findTheBoi->ypos = get;
+            findTheBoi->ypos = get;
         }
         //m stands for move 1 direction
         //t stands for rotate 90 degrees
         printf("Where does the Boi go?\n");
         printf("Type any number of 't's to turn him\n");
         printf("Type any number of 'm's to make him step forward\n");
+        getchar();
+        fgets(commands, MAX, stdin);
+        //do some error handling for x & y coordinates
+        //also fix so that you print the actual direction letter and not a number
+        for(int i = 0; i<MAX; i++){
+                if(commands[i] == 't'){
+                    turn(findTheBoi);
+                }if(commands[i] == 'm'){
+                    move(findTheBoi);
+                }if(commands[i] == 0){
+                    break;
+                }
+            }
 
-
-        //once boi has been completed take these inputs and apply them to boi until user quits
-        move();
-        turn();
 
         printf("x : %d y : %d, direction : %d\n", boi.xpos, boi.ypos, boi.dir);
         printf("\n");
@@ -75,19 +86,29 @@ int main(){
     return 0;
 }
 
-void move(){
-//parse number of m's into how many steps we need to take and apply to boi
+void move(ROBOT *m){
+    if(m->dir == 0){
+        m->xpos++;
+    }if(m->dir == 1){
+        m->ypos++;
+    }if(m->dir == 2){
+        m->xpos--;
+    }if(m->dir == 3){
+        m->ypos--;
+    }
 }
 
-void turn(){
-//parse number of t's into how far we need to turn and apply to boi
+void turn(ROBOT *t){
+    if(t->dir < 3){
+        t->dir++;
+    }else{
+        t->dir = 0;
+    }
 }
 
 int quit(){
     char quit = 'f';
     printf("Abandon the boi by entering 'q, otherwise type anything else to start over.\n");
-    scanf("%c",&quit);
-
     scanf("%c",&quit);
     if(quit == 'q'){
         return 0;
