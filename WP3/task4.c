@@ -20,7 +20,6 @@ char pers_number[13]; // yyyymmddnnnc
 }PERSON;
 
 PERSON input_record( void);// Reads in a person record.
-
 void write_new_file(PERSON *inrecord); //Creats a file and write a first record
 void printfile(void); // print out all persons in the file
 void search_by_firstname( char *name);// print out person if in list 
@@ -45,29 +44,20 @@ PERSON *personptr = &ppost;
     switch (val)
     {
     case 1 :
-    FILE* fileptr;     
-    //creates a new file with name file.txt
-    //fp = fopen ("file.txt", "w+");
-    //fileptr= fopen(constchar * filename, constchar* mode);   
-    //fclose(fileptr);
+    write_new_file(personptr);
     break;
 
     case 2 :
-    FILE* fileptr;     
     append_file(personptr);
-
     break;
 
     case 3 : 
-    FILE* fileptr;     
-    //fileptr= fopen(constchar * filename, constchar* mode); 
-    //fclose(fileptr);
-
+    //needs a char pointer
+    search_by_firstname();
     break;
 
     case 4 : 
     printfile();
-
     break;
 
     case 5 :
@@ -87,6 +77,12 @@ return(0);
 }
 
 void write_new_file(PERSON *inrecord){
+    //creates a new file with name file.txt
+    //needs to also delete the old file
+
+    //fp = fopen ("file.txt", "w+");
+    //fileptr= fopen(constchar * filename, constchar* mode);   
+    //fclose(fileptr);
 
 }
 
@@ -104,13 +100,18 @@ void printfile(void){
 }
 
 void search_by_firstname( char *name){
+        //needs search code
 
+    //fileptr= fopen(constchar * filename, constchar* mode); 
+    //fclose(fileptr);
 }
 
 void append_file(PERSON *inrecord){
+        //code for writing to file
+        //need to make sure we don't delete the original text
+
+
     //fileptr= fopen(constchar * filename, constchar* mode); 
-    //code for writing to file
-    //need to use person pointer
     //fprintf(fileptr, "%s %s %s %d", "We", "are", "in", 2012);
     //fclose(fileptr);
 
