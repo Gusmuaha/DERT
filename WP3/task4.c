@@ -52,6 +52,9 @@ PERSON *personptr = &ppost;
     break;
 
     case 3 : 
+    //should aks for name to be searched
+    //store name as String (array)
+    //iterate through file and compare
     //needs a char pointer
     search_by_firstname();
     break;
@@ -101,6 +104,7 @@ void printfile(void){
 
 void search_by_firstname( char *name){
         //needs search code
+        //should return all matching names from the file
 
     //fileptr= fopen(constchar * filename, constchar* mode); 
     //fclose(fileptr);
