@@ -44,6 +44,8 @@ PERSON ppost;
     {
     case 1 :
     FILE* fileptr;     
+    //creates a new file with name file.txt
+    //fp = fopen ("file.txt", "w+");
     //fileptr= fopen(constchar * filename, constchar* mode);   
     //fclose(fileptr);
     break;
@@ -51,6 +53,8 @@ PERSON ppost;
     case 2 :
     FILE* fileptr;     
     //fileptr= fopen(constchar * filename, constchar* mode); 
+    //code for writing to file
+    //fprintf(fileptr, "%s %s %s %d", "We", "are", "in", 2012);
     //fclose(fileptr);
 
     break;
