@@ -29,8 +29,10 @@ void append_file(PERSON *inrecord);// appends a new person to the file
 
 
 int main( void){
+FILE* fileptr;     
 int val;
 PERSON ppost;
+PERSON *personptr = &ppost;
 
     printf("Pick a menu option\n");
     printf("1. Create a new file and delete the old one\n");
@@ -52,10 +54,7 @@ PERSON ppost;
 
     case 2 :
     FILE* fileptr;     
-    //fileptr= fopen(constchar * filename, constchar* mode); 
-    //code for writing to file
-    //fprintf(fileptr, "%s %s %s %d", "We", "are", "in", 2012);
-    //fclose(fileptr);
+    append_file(personptr);
 
     break;
 
@@ -67,17 +66,7 @@ PERSON ppost;
     break;
 
     case 4 : 
-    FILE* fileptr;     
-    //fileptr= fopen(constchar * filename, constchar* mode); 
-    /* while(1) {
-      c = fgetc(fileptr);
-      if( feof(fileptr) ) {
-         break;
-      }
-      printf("%c", c);
-   }
-   */
-    //fclose(fileptr);
+    printfile();
 
     break;
 
@@ -96,3 +85,35 @@ PERSON ppost;
 return(0);
 
 }
+
+void write_new_file(PERSON *inrecord){
+
+}
+
+void printfile(void){
+    //fileptr= fopen(constchar * filename, constchar* mode); 
+    /* while(1) {
+      c = fgetc(fileptr);
+      if( feof(fileptr) ) {
+         break;
+      }
+      printf("%c", c);
+   }
+   */
+    //fclose(fileptr);
+}
+
+void search_by_firstname( char *name){
+
+}
+
+void append_file(PERSON *inrecord){
+    //fileptr= fopen(constchar * filename, constchar* mode); 
+    //code for writing to file
+    //need to use person pointer
+    //fprintf(fileptr, "%s %s %s %d", "We", "are", "in", 2012);
+    //fclose(fileptr);
+
+}
+
+
