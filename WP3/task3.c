@@ -1,10 +1,18 @@
-/*********************************
-*********** DIT1165 Program file
-exerc_3_3.c
-**
-2018-01-04
-**
-********************************************/
+/* ====================================
+File name: task3.c (or cpp)
+Date: 2020-mm-dd
+Group nr 17
+
+Members that contribute to the solutions
+Hassan Mualla
+Hannah Maltkvist
+Carl Nihlmar
+
+
+Member not present at demonstration time: 
+Demonstration code : [22547]
+ Important, No code no exercise points!
+====================================== */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

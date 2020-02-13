@@ -1,13 +1,14 @@
 /* ====================================
-File name: exerc_3_4.c (or cpp)
+File name: task4.c (or cpp)
 Date: 2019-mm-dd
 Group Number:17
 Members that contributed:
-Members that contribute to the solutions
 Hassan Mualla
 Hannah Maltkvist
 Carl Nihlmar
-Demonstration code: [<Ass code 1-3> <abc>]        Important !
+Member not present at demonstration time: 
+
+Demonstration code: [22088]       
 ====================================== */
 
 #include <stdlib.h>
