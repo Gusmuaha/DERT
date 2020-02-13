@@ -9,116 +9,169 @@ Hannah Maltkvist
 Carl Nihlmar
 Demonstration code: [<Ass code 1-3> <abc>]        Important !
 ====================================== */
+
 #include <stdlib.h>
 #include <stdio.h>
-// 
+#include <string.h>
 
+// -----Typedefs -------
 typedef struct {
-char firstname[20];
-char famnamne[20];
-char pers_number[13]; // yyyymmddnnnc
+    char firstname[20];
+    char famnamne[20];
+    char pers_number[13]; // yyyymmddnnnc
 }PERSON;
 
-PERSON input_record( void);// Reads in a person record.
-void write_new_file(PERSON *inrecord); //Creats a file and write a first record
+char * filename = "Test.bin";
+static int count = 0;
+
+// Function declaration (to be extend)
+PERSON input_record( void); // Reads in a person record.
+void write_new_file( PERSON *inrecord); //Creats a file and write a first record
 void printfile(void); // print out all persons in the file
-void search_by_firstname( char *name);// print out person if in list 
+void search_by_firstname( char *name);// print out person if in list
 void append_file(PERSON *inrecord);// appends a new person to the file
 
-
-
 int main( void){
-FILE* fileptr;     
-int val;
-PERSON ppost;
-PERSON *personptr = &ppost;
-
-    printf("Pick a menu option\n");
-    printf("1. Create a new file and delete the old one\n");
-    printf("2. Add a new person to the file\n");
-    printf("3. Search for a person in the file\n");
-    printf("4. Print the entire file\n");
-    printf("5. Quit the program\n");
-    scanf("%d", &val);
-
-    switch (val)
+    PERSON ppost;
+    int ch;
+    FILE *fptr;
+    char firstname[20];
+    char famnamne[20];
+    char pers_number[13];
+    while(1)
     {
-    case 1 :
-    write_new_file(personptr);
-    break;
+        printf("Select an option\n");
+        printf("1 Create a new and delete the old file.\n");
+        printf("2 Add a new person to the file.\n");
+        printf("3 Search for a person in the file .\n");
+        printf("4 Print out all in the file.\n");
+        printf("5 Exit the program.\n");
+        scanf("%d", &ch);
 
-    case 2 :
-    append_file(personptr);
-    break;
-
-    case 3 : 
-    //should aks for name to be searched
-    //store name as String (array)
-    //iterate through file and compare
-    //needs a char pointer
-    search_by_firstname();
-    break;
-
-    case 4 : 
-    printfile();
-    break;
-
-    case 5 :
-    //
-    break;   
-    
-    default:
-    printf("That is not a valid selection, please pick an option between 1-5\n");
-        break;
+        switch(ch)
+        {
+            case 1:
+                    printf("Enter Student First name, Family Name, Person Number");
+                    scanf("%s %s %s", firstname, famnamne, pers_number);
+                    strcpy(ppost.firstname, firstname);
+                    strcpy(ppost.famnamne, famnamne);
+                    strcpy(ppost.pers_number, pers_number);
+                    write_new_file( &ppost);
+                    break;
+            case 2:
+                    printf("Enter Student First name, Family Name, Person Number");
+                    scanf("%s %s %s", firstname, famnamne, pers_number);
+                    strcpy(ppost.firstname, firstname);
+                    strcpy(ppost.famnamne, famnamne);
+                    strcpy(ppost.pers_number, pers_number);
+                    append_file(&ppost);
+                    break;
+            case 3:
+                    printf("Enter Student First name");
+                    scanf("%s", firstname);
+                    search_by_firstname( firstname);
+                    break;
+            case 4: printfile();
+                    break;
+            case 5:
+                    fptr = fopen(filename,"w");
+                    fclose(fptr);
+                    return 0;
+            default: break;
+        }
     }
-
-
-
-
-return(0);
-
+    fptr = fopen(filename,"w");
+    fclose(fptr);
+    return(0);
 }
 
-void write_new_file(PERSON *inrecord){
-    //creates a new file with name file.txt
-    //needs to also delete the old file
-
-    //fp = fopen ("file.txt", "w+");
-    //fileptr= fopen(constchar * filename, constchar* mode);   
-    //fclose(fileptr);
-
+PERSON input_record( void) // Reads in a person record.
+{
+    PERSON ppost;
+    FILE *fptr;
+    fptr = fopen(filename,"rb");
+     if (!fptr)
+     {
+        printf("Unable to open file!");
+        return;
+     }
+    fread(&ppost,sizeof(PERSON),1,fptr);
+    fclose(fptr);
+    return ppost;
 }
-
-void printfile(void){
-    //fileptr= fopen(constchar * filename, constchar* mode); 
-    /* while(1) {
-      c = fgetc(fileptr);
-      if( feof(fileptr) ) {
-         break;
-      }
-      printf("%c", c);
-   }
-   */
-    //fclose(fileptr);
+void write_new_file( PERSON *inrecord) //Creats a file and write a first record
+{
+    FILE *fptr;
+    fptr = fopen(filename,"w");
+    if (!fptr)
+    {
+        printf("Unable to creat/open file!");
+        return;
+    }
+    fwrite(inrecord, sizeof(PERSON), 1, fptr);
+    fclose(fptr);
+    count = 1;
 }
-
-void search_by_firstname( char *name){
-        //needs search code
-        //should return all matching names from the file
-
-    //fileptr= fopen(constchar * filename, constchar* mode); 
-    //fclose(fileptr);
+void printfile(void) // print out all persons in the file
+{
+    PERSON ppost;
+    FILE *fptr;
+    int i, tc = count;
+    fptr = fopen(filename,"rb");
+    if (!fptr)
+    {
+        printf("Unable to open file!");
+        return;
+    }
+    while(tc != 0)
+    {
+        fread(&ppost,sizeof(PERSON),1,fptr);
+        printf("%s\n",ppost.firstname);
+        printf("%s\n",ppost.famnamne);
+        printf("%s\n",ppost.pers_number);
+        tc--;
+    }
+    fclose(fptr);
 }
-
-void append_file(PERSON *inrecord){
-        //code for writing to file
-        //need to make sure we don't delete the original text
-
-
-    //fileptr= fopen(constchar * filename, constchar* mode); 
-    //fprintf(fileptr, "%s %s %s %d", "We", "are", "in", 2012);
-    //fclose(fileptr);
-
+void search_by_firstname( char *name)// print out person if in list
+{
+    PERSON ppost;
+    FILE *fptr;
+    int i, flag = 0, tc = count;
+    fptr = fopen(filename,"rb");
+    if (!fptr)
+    {
+        printf("Unable to open file!");
+        return;
+    }
+    while(tc != 0)
+    {
+        fread(&ppost,sizeof(PERSON),1,fptr);
+        if(strcmp(ppost.firstname, name) == 0)
+        {
+            flag = 1;
+            break;
+        }
+        tc--;
+    }
+    if(flag == 1)
+        printf("Enter name is found in the record.\n");
+    else
+        printf("Enter name is NOT found in the record.\n");
+    fclose(fptr);
+}
+void append_file(PERSON *inrecord)// appends a new person to the file
+{
+    FILE *fptr;
+    fptr = fopen(filename,"a");
+    if (!fptr)
+    {
+        printf("Unable to open file!");
+        return;
+    }
+    fwrite(inrecord, sizeof(PERSON), 1, fptr);
+    count++;
+    fclose(fptr);
 }
 
 
