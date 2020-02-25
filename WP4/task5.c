@@ -26,7 +26,7 @@ void setup()
 
 void loop()
 {
-  delay(5);
+  delay(1000);
   char pressed = checkPress();
   if (pressed != 'x' && pressed != last) {
   	Serial.println(pressed);
